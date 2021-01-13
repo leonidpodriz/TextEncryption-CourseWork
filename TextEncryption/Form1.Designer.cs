@@ -29,8 +29,6 @@ namespace TextEncryption
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.KeyGroupBox = new System.Windows.Forms.GroupBox();
             this.KeyTextBox = new System.Windows.Forms.TextBox();
             this.ModeGroupBox = new System.Windows.Forms.GroupBox();
@@ -55,16 +53,10 @@ namespace TextEncryption
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // KeyGroupBox
             // 
             this.KeyGroupBox.Controls.Add(this.KeyTextBox);
-            this.KeyGroupBox.Location = new System.Drawing.Point(12, 36);
+            this.KeyGroupBox.Location = new System.Drawing.Point(12, 50);
             this.KeyGroupBox.Name = "KeyGroupBox";
             this.KeyGroupBox.Size = new System.Drawing.Size(171, 66);
             this.KeyGroupBox.TabIndex = 1;
@@ -87,7 +79,7 @@ namespace TextEncryption
             this.ModeGroupBox.Controls.Add(this.radioButton1);
             this.ModeGroupBox.Controls.Add(this.DecodeWithoutKeyRadioButton);
             this.ModeGroupBox.Controls.Add(this.DecodeRadioButton);
-            this.ModeGroupBox.Location = new System.Drawing.Point(201, 36);
+            this.ModeGroupBox.Location = new System.Drawing.Point(201, 50);
             this.ModeGroupBox.Name = "ModeGroupBox";
             this.ModeGroupBox.Size = new System.Drawing.Size(587, 66);
             this.ModeGroupBox.TabIndex = 2;
@@ -137,7 +129,7 @@ namespace TextEncryption
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.ClearTextToEncryptBoxButton_1);
             this.groupBox1.Controls.Add(this.TextToEncryptBox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 128);
+            this.groupBox1.Location = new System.Drawing.Point(12, 142);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(776, 179);
             this.groupBox1.TabIndex = 3;
@@ -163,6 +155,7 @@ namespace TextEncryption
             this.button2.TabIndex = 2;
             this.button2.Text = "Load from file";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ClearTextToEncryptBoxButton_1
             // 
@@ -187,7 +180,7 @@ namespace TextEncryption
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.ClearTextToEncryptBoxButton_2);
             this.groupBox2.Controls.Add(this.ResultTextBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 345);
+            this.groupBox2.Location = new System.Drawing.Point(12, 359);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(776, 179);
             this.groupBox2.TabIndex = 4;
@@ -202,6 +195,7 @@ namespace TextEncryption
             this.button5.TabIndex = 2;
             this.button5.Text = "Save to file";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.saveResult);
             // 
             // ClearTextToEncryptBoxButton_2
             // 
@@ -245,7 +239,7 @@ namespace TextEncryption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 540);
+            this.ClientSize = new System.Drawing.Size(805, 579);
             this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -268,7 +262,6 @@ namespace TextEncryption
         }
 
         #endregion
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.GroupBox KeyGroupBox;
         private System.Windows.Forms.TextBox KeyTextBox;
         private System.Windows.Forms.GroupBox ModeGroupBox;

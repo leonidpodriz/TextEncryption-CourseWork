@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace TextEncryption
@@ -117,6 +118,55 @@ namespace TextEncryption
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = @"С:\",
+                Title = "Відкрийте текстовоий файл",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "txt",
+                Filter = "txt files (*.txt)|*.txt",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string text = System.IO.File.ReadAllText(openFileDialog1.FileName);
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                this.TextToEncryptBox.Text = text;
+                MessageBox.Show("Вміст файлу завантажено!", "Успіх", buttons, MessageBoxIcon.Information);
+            }
+        }
+        private void saveResult(object sender, System.EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+            saveFileDialog1.Title = "Зберегти результат";
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                StreamWriter writer = new StreamWriter(saveFileDialog1.OpenFile());
+                switch (saveFileDialog1.FilterIndex)
+                {
+                    case 1:
+                        writer.WriteLine(this.ResultTextBox.Text);
+                        break;
+                }
+
+                writer.Dispose();
+                writer.Close();
+            }
         }
     }
 }

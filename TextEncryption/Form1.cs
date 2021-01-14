@@ -14,9 +14,9 @@ namespace TextEncryption
     public partial class MainForm : Form
     {
         int workMode = 0; // 0 - encrypt, 1 - decrypt, 2 - decrypt without key
-        CezarCipher cipher = new CezarCipher();
+        private readonly CezarCipher cipher = new CezarCipher();
         string[] dictionary;
-        string ENCODE_BUTTON_TEXT = "Кодувати",
+        private readonly string ENCODE_BUTTON_TEXT = "Кодувати",
                DECODE_BUTTON_TEXT = "Декодувати";
 
         public MainForm()
@@ -27,6 +27,7 @@ namespace TextEncryption
 
         private void InitializeBackgroundWorker()
         {
+            KeyTextBox.Value = CezarCipher.DEFAULT_KEY;
             decodingWorcker.WorkerReportsProgress = true;
             decodingWorcker.WorkerSupportsCancellation = true;
             decodingWorcker.DoWork += new DoWorkEventHandler(decodingWorker_DoWork);
@@ -36,14 +37,14 @@ namespace TextEncryption
 
         private void updateKey(object sender, EventArgs e)
         {
-            this.cipher.setKey(Decimal.ToInt16(this.KeyTextBox.Value));
+            this.cipher.SetKey(Decimal.ToInt16(this.KeyTextBox.Value));
         }
 
         private void setMode(int modeNumber, string buttonText)
         {
             this.workMode = modeNumber;
-            this.SubmitButton.Text = buttonText;
-            this.ResultTextBox.Text = "";
+            this.submitButton.Text = buttonText;
+            this.resultTextBox.Text = "";
         }
 
         private void setEncodeMode(object sender, EventArgs e)
@@ -63,12 +64,12 @@ namespace TextEncryption
 
         private void clearSourceTextBox()
         {
-            this.SourceTextBox.Text = "";
+            this.sourceTextBox.Text = "";
         }
 
         private void clearResultTextBox()
         {
-            this.ResultTextBox.Text = "";
+            this.resultTextBox.Text = "";
         }
 
         private void clearTextBoxes(object sender, EventArgs e)
@@ -82,10 +83,10 @@ namespace TextEncryption
             switch (workMode)
             {
                 case 0:
-                    this.ResultTextBox.Text = cipher.Encode(SourceTextBox.Text);
+                    this.resultTextBox.Text = cipher.Encode(sourceTextBox.Text);
                     break;
                 case 1:
-                    this.ResultTextBox.Text = cipher.Decode(SourceTextBox.Text);
+                    this.resultTextBox.Text = cipher.Decode(sourceTextBox.Text);
                     break;
                 case 2:
                     if (dictionary != null)
@@ -94,7 +95,7 @@ namespace TextEncryption
                         break;
                     }
 
-                    ResultTextBox.Text = "Словник не вказаний!";
+                    resultTextBox.Text = "Словник не вказаний!";
                     break;
             }
         }
@@ -105,7 +106,7 @@ namespace TextEncryption
             EncodeRadioButton.Enabled = false;
             DecodeWithoutKeyRadioButton.Enabled = false;
 
-            CezarCipherBruteForce brutForcer = new CezarCipherBruteForce(dictionary, SourceTextBox.Text);
+            CezarCipherBruteForce brutForcer = new CezarCipherBruteForce(dictionary, sourceTextBox.Text);
             decodingWorcker.RunWorkerAsync(brutForcer);
         }
 
@@ -161,10 +162,10 @@ namespace TextEncryption
         {
             if (e.Cancelled)
             {
-                ResultTextBox.Text = "Зупинено користувачем.";
+                resultTextBox.Text = "Зупинено користувачем.";
             } else
             {
-                ResultTextBox.Text = e.Result.ToString();
+                resultTextBox.Text = e.Result.ToString();
             }
             DecodeRadioButton.Enabled = true;
             EncodeRadioButton.Enabled = true;
@@ -173,19 +174,21 @@ namespace TextEncryption
 
         private void decodingWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            progressBar1.Value = e.ProgressPercentage;
+            buckgroundProcessProgressBar.Value = e.ProgressPercentage;
         }
 
         private void LoadTextForTextToProcessBox(object sender, EventArgs e)
         {
-            this.SourceTextBox.Text = this.getFileNameWithDialog();
+            this.sourceTextBox.Text = this.getFileNameWithDialog();
         }
 
         private void saveResult(object sender, System.EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
-            saveFileDialog1.Title = "Зберегти результат";
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog
+            {
+                Filter = "txt files (*.txt)|*.txt",
+                Title = "Зберегти результат"
+            };
             saveFileDialog1.ShowDialog();
 
             if (saveFileDialog1.FileName != "")
@@ -194,7 +197,7 @@ namespace TextEncryption
                 switch (saveFileDialog1.FilterIndex)
                 {
                     case 1:
-                        writer.WriteLine(this.ResultTextBox.Text);
+                        writer.WriteLine(this.resultTextBox.Text);
                         break;
                 }
 

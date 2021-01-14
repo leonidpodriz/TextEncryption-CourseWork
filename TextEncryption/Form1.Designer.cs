@@ -36,27 +36,27 @@ namespace TextEncryption
             this.EncodeRadioButton = new System.Windows.Forms.RadioButton();
             this.DecodeWithoutKeyRadioButton = new System.Windows.Forms.RadioButton();
             this.DecodeRadioButton = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.SubmitButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.ClearTextToEncryptBoxButton_1 = new System.Windows.Forms.Button();
-            this.SourceTextBox = new System.Windows.Forms.RichTextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.ClearTextToEncryptBoxButton_2 = new System.Windows.Forms.Button();
-            this.ResultTextBox = new System.Windows.Forms.RichTextBox();
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.проПрограммуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sourceTextGroupBox = new System.Windows.Forms.GroupBox();
+            this.selectDictionaryButton = new System.Windows.Forms.Button();
+            this.submitButton = new System.Windows.Forms.Button();
+            this.loadFromFileButton = new System.Windows.Forms.Button();
+            this.clearTextToEncryptBoxButton_1 = new System.Windows.Forms.Button();
+            this.clearTextToEncryptBoxButton_2 = new System.Windows.Forms.Button();
+            this.sourceTextBox = new System.Windows.Forms.RichTextBox();
+            this.resultTextGroupBox = new System.Windows.Forms.GroupBox();
+            this.saveToFileButton = new System.Windows.Forms.Button();
+            this.resultTextBox = new System.Windows.Forms.RichTextBox();
+            this.topMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.aboutProgramTopMenuStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decodingWorcker = new System.ComponentModel.BackgroundWorker();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buckgroundProcessProgressBar = new System.Windows.Forms.ProgressBar();
+            this.cancelBackgroundProgressButton = new System.Windows.Forms.Button();
             this.KeyGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeyTextBox)).BeginInit();
             this.ModeGroupBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.menuStrip2.SuspendLayout();
+            this.sourceTextGroupBox.SuspendLayout();
+            this.resultTextGroupBox.SuspendLayout();
+            this.topMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // KeyGroupBox
@@ -100,187 +100,190 @@ namespace TextEncryption
             this.EncodeRadioButton.Checked = true;
             this.EncodeRadioButton.Location = new System.Drawing.Point(6, 25);
             this.EncodeRadioButton.Name = "EncodeRadioButton";
-            this.EncodeRadioButton.Size = new System.Drawing.Size(107, 24);
+            this.EncodeRadioButton.Size = new System.Drawing.Size(123, 24);
             this.EncodeRadioButton.TabIndex = 3;
             this.EncodeRadioButton.TabStop = true;
-            this.EncodeRadioButton.Text = "Кодувати";
+            this.EncodeRadioButton.Text = "Шифрувати";
             this.EncodeRadioButton.UseVisualStyleBackColor = true;
             this.EncodeRadioButton.CheckedChanged += new System.EventHandler(this.setEncodeMode);
             // 
             // DecodeWithoutKeyRadioButton
             // 
             this.DecodeWithoutKeyRadioButton.AutoSize = true;
-            this.DecodeWithoutKeyRadioButton.Location = new System.Drawing.Point(361, 25);
+            this.DecodeWithoutKeyRadioButton.Location = new System.Drawing.Point(291, 25);
             this.DecodeWithoutKeyRadioButton.Name = "DecodeWithoutKeyRadioButton";
-            this.DecodeWithoutKeyRadioButton.Size = new System.Drawing.Size(208, 24);
+            this.DecodeWithoutKeyRadioButton.Size = new System.Drawing.Size(232, 24);
             this.DecodeWithoutKeyRadioButton.TabIndex = 2;
             this.DecodeWithoutKeyRadioButton.TabStop = true;
-            this.DecodeWithoutKeyRadioButton.Text = "Декодувати без ключа";
+            this.DecodeWithoutKeyRadioButton.Text = "Розшифрувати без ключа";
             this.DecodeWithoutKeyRadioButton.UseVisualStyleBackColor = true;
             this.DecodeWithoutKeyRadioButton.CheckedChanged += new System.EventHandler(this.setDecodeWithoutKeyMode);
             // 
             // DecodeRadioButton
             // 
             this.DecodeRadioButton.AutoSize = true;
-            this.DecodeRadioButton.Location = new System.Drawing.Point(173, 25);
+            this.DecodeRadioButton.Location = new System.Drawing.Point(135, 25);
             this.DecodeRadioButton.Name = "DecodeRadioButton";
-            this.DecodeRadioButton.Size = new System.Drawing.Size(126, 24);
+            this.DecodeRadioButton.Size = new System.Drawing.Size(150, 24);
             this.DecodeRadioButton.TabIndex = 1;
             this.DecodeRadioButton.TabStop = true;
-            this.DecodeRadioButton.Text = "Декодувати";
+            this.DecodeRadioButton.Text = "Розшифрувати";
             this.DecodeRadioButton.UseVisualStyleBackColor = true;
             this.DecodeRadioButton.CheckedChanged += new System.EventHandler(this.setDecodeMode);
             // 
-            // groupBox1
+            // sourceTextGroupBox
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.SubmitButton);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.ClearTextToEncryptBoxButton_1);
-            this.groupBox1.Controls.Add(this.SourceTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 142);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1177, 419);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Вхідний текст";
+            this.sourceTextGroupBox.Controls.Add(this.selectDictionaryButton);
+            this.sourceTextGroupBox.Controls.Add(this.submitButton);
+            this.sourceTextGroupBox.Controls.Add(this.loadFromFileButton);
+            this.sourceTextGroupBox.Controls.Add(this.clearTextToEncryptBoxButton_1);
+            this.sourceTextGroupBox.Controls.Add(this.sourceTextBox);
+            this.sourceTextGroupBox.Location = new System.Drawing.Point(12, 142);
+            this.sourceTextGroupBox.Name = "sourceTextGroupBox";
+            this.sourceTextGroupBox.Size = new System.Drawing.Size(1177, 419);
+            this.sourceTextGroupBox.TabIndex = 3;
+            this.sourceTextGroupBox.TabStop = false;
+            this.sourceTextGroupBox.Text = "Вхідний текст";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(688, 367);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(315, 46);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Вибрати словник";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.LoadDictionary);
+            this.selectDictionaryButton.Location = new System.Drawing.Point(688, 367);
+            this.selectDictionaryButton.Name = "button1";
+            this.selectDictionaryButton.Size = new System.Drawing.Size(315, 46);
+            this.selectDictionaryButton.TabIndex = 4;
+            this.selectDictionaryButton.Text = "Вибрати словник";
+            this.selectDictionaryButton.UseVisualStyleBackColor = true;
+            this.selectDictionaryButton.Click += new System.EventHandler(this.LoadDictionary);
             // 
             // SubmitButton
             // 
-            this.SubmitButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.SubmitButton.Location = new System.Drawing.Point(1009, 367);
-            this.SubmitButton.Name = "SubmitButton";
-            this.SubmitButton.Size = new System.Drawing.Size(168, 46);
-            this.SubmitButton.TabIndex = 3;
-            this.SubmitButton.Text = "Кодувати";
-            this.SubmitButton.UseVisualStyleBackColor = true;
-            this.SubmitButton.Click += new System.EventHandler(this.processText);
+            this.submitButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.submitButton.Location = new System.Drawing.Point(1009, 367);
+            this.submitButton.Name = "SubmitButton";
+            this.submitButton.Size = new System.Drawing.Size(168, 46);
+            this.submitButton.TabIndex = 3;
+            this.submitButton.Text = "Кодувати";
+            this.submitButton.UseVisualStyleBackColor = true;
+            this.submitButton.Click += new System.EventHandler(this.processText);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(58, 367);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(217, 46);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Завантажити з файлу";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.LoadTextForTextToProcessBox);
+            this.loadFromFileButton.Location = new System.Drawing.Point(58, 367);
+            this.loadFromFileButton.Name = "button2";
+            this.loadFromFileButton.Size = new System.Drawing.Size(217, 46);
+            this.loadFromFileButton.TabIndex = 2;
+            this.loadFromFileButton.Text = "Завантажити з файлу";
+            this.loadFromFileButton.UseVisualStyleBackColor = true;
+            this.loadFromFileButton.Click += new System.EventHandler(this.LoadTextForTextToProcessBox);
             // 
             // ClearTextToEncryptBoxButton_1
             // 
-            this.ClearTextToEncryptBoxButton_1.Location = new System.Drawing.Point(6, 367);
-            this.ClearTextToEncryptBoxButton_1.Name = "ClearTextToEncryptBoxButton_1";
-            this.ClearTextToEncryptBoxButton_1.Size = new System.Drawing.Size(46, 46);
-            this.ClearTextToEncryptBoxButton_1.TabIndex = 1;
-            this.ClearTextToEncryptBoxButton_1.Text = "X";
-            this.ClearTextToEncryptBoxButton_1.UseVisualStyleBackColor = true;
-            this.ClearTextToEncryptBoxButton_1.Click += new System.EventHandler(this.clearTextBoxes);
+            this.clearTextToEncryptBoxButton_1.Location = new System.Drawing.Point(6, 367);
+            this.clearTextToEncryptBoxButton_1.Name = "ClearTextToEncryptBoxButton_1";
+            this.clearTextToEncryptBoxButton_1.Size = new System.Drawing.Size(46, 46);
+            this.clearTextToEncryptBoxButton_1.TabIndex = 1;
+            this.clearTextToEncryptBoxButton_1.Text = "X";
+            this.clearTextToEncryptBoxButton_1.UseVisualStyleBackColor = true;
+            this.clearTextToEncryptBoxButton_1.Click += new System.EventHandler(this.clearTextBoxes);
             // 
-            // SourceTextBox
+            // sourceTextBox
             // 
-            this.SourceTextBox.Location = new System.Drawing.Point(6, 25);
-            this.SourceTextBox.Name = "SourceTextBox";
-            this.SourceTextBox.Size = new System.Drawing.Size(1165, 336);
-            this.SourceTextBox.TabIndex = 0;
-            this.SourceTextBox.Text = "";
+            this.sourceTextBox.Location = new System.Drawing.Point(6, 25);
+            this.sourceTextBox.Name = "sourceTextBox";
+            this.sourceTextBox.Size = new System.Drawing.Size(1165, 336);
+            this.sourceTextBox.TabIndex = 0;
+            this.sourceTextBox.Text = "";
             // 
-            // groupBox2
+            // resultTextGroupBox
             // 
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.ClearTextToEncryptBoxButton_2);
-            this.groupBox2.Controls.Add(this.ResultTextBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 567);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1177, 383);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Результат";
+            this.resultTextGroupBox.Controls.Add(this.saveToFileButton);
+            this.resultTextGroupBox.Controls.Add(this.clearTextToEncryptBoxButton_2);
+            this.resultTextGroupBox.Controls.Add(this.resultTextBox);
+            this.resultTextGroupBox.Location = new System.Drawing.Point(12, 567);
+            this.resultTextGroupBox.Name = "resultTextGroupBox";
+            this.resultTextGroupBox.Size = new System.Drawing.Size(1177, 383);
+            this.resultTextGroupBox.TabIndex = 4;
+            this.resultTextGroupBox.TabStop = false;
+            this.resultTextGroupBox.Text = "Результат";
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(58, 331);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(217, 46);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Зберегти до файлу";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.saveResult);
+            this.saveToFileButton.Location = new System.Drawing.Point(58, 331);
+            this.saveToFileButton.Name = "button5";
+            this.saveToFileButton.Size = new System.Drawing.Size(217, 46);
+            this.saveToFileButton.TabIndex = 2;
+            this.saveToFileButton.Text = "Зберегти до файлу";
+            this.saveToFileButton.UseVisualStyleBackColor = true;
+            this.saveToFileButton.Click += new System.EventHandler(this.saveResult);
             // 
             // ClearTextToEncryptBoxButton_2
             // 
-            this.ClearTextToEncryptBoxButton_2.Location = new System.Drawing.Point(6, 331);
-            this.ClearTextToEncryptBoxButton_2.Name = "ClearTextToEncryptBoxButton_2";
-            this.ClearTextToEncryptBoxButton_2.Size = new System.Drawing.Size(46, 46);
-            this.ClearTextToEncryptBoxButton_2.TabIndex = 1;
-            this.ClearTextToEncryptBoxButton_2.Text = "X";
-            this.ClearTextToEncryptBoxButton_2.UseVisualStyleBackColor = true;
-            this.ClearTextToEncryptBoxButton_2.Click += new System.EventHandler(this.clearTextBoxes);
+            this.clearTextToEncryptBoxButton_2.Location = new System.Drawing.Point(6, 331);
+            this.clearTextToEncryptBoxButton_2.Name = "ClearTextToEncryptBoxButton_2";
+            this.clearTextToEncryptBoxButton_2.Size = new System.Drawing.Size(46, 46);
+            this.clearTextToEncryptBoxButton_2.TabIndex = 1;
+            this.clearTextToEncryptBoxButton_2.Text = "X";
+            this.clearTextToEncryptBoxButton_2.UseVisualStyleBackColor = true;
+            this.clearTextToEncryptBoxButton_2.Click += new System.EventHandler(this.clearTextBoxes);
             // 
             // ResultTextBox
             // 
-            this.ResultTextBox.Location = new System.Drawing.Point(6, 25);
-            this.ResultTextBox.Name = "ResultTextBox";
-            this.ResultTextBox.Size = new System.Drawing.Size(1165, 300);
-            this.ResultTextBox.TabIndex = 0;
-            this.ResultTextBox.Text = "";
+            this.resultTextBox.Location = new System.Drawing.Point(6, 25);
+            this.resultTextBox.Name = "ResultTextBox";
+            this.resultTextBox.ReadOnly = true;
+            this.resultTextBox.Size = new System.Drawing.Size(1165, 300);
+            this.resultTextBox.TabIndex = 0;
+            this.resultTextBox.Text = "";
             // 
-            // menuStrip2
+            // topMenuStrip
             // 
-            this.menuStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.проПрограммуToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1201, 33);
-            this.menuStrip2.TabIndex = 6;
-            this.menuStrip2.Text = "menuStrip2";
+            this.topMenuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.topMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.topMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutProgramTopMenuStripItem});
+            this.topMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.topMenuStrip.Name = "topMenuStrip";
+            this.topMenuStrip.Size = new System.Drawing.Size(1201, 33);
+            this.topMenuStrip.TabIndex = 6;
+            this.topMenuStrip.Text = "menuStrip2";
             // 
-            // проПрограммуToolStripMenuItem
+            // aboutProgramTopMenuStripItem
             // 
-            this.проПрограммуToolStripMenuItem.Name = "проПрограммуToolStripMenuItem";
-            this.проПрограммуToolStripMenuItem.Size = new System.Drawing.Size(162, 29);
-            this.проПрограммуToolStripMenuItem.Text = "Про программу";
-            this.проПрограммуToolStripMenuItem.Click += new System.EventHandler(this.AboutProgramToolStripMenuItem_Click);
+            this.aboutProgramTopMenuStripItem.Name = "aboutProgramTopMenuStripItem";
+            this.aboutProgramTopMenuStripItem.Size = new System.Drawing.Size(162, 29);
+            this.aboutProgramTopMenuStripItem.Text = "Про программу";
+            this.aboutProgramTopMenuStripItem.Click += new System.EventHandler(this.AboutProgramToolStripMenuItem_Click);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 956);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(952, 50);
-            this.progressBar1.TabIndex = 7;
+            this.buckgroundProcessProgressBar.Location = new System.Drawing.Point(12, 956);
+            this.buckgroundProcessProgressBar.Name = "progressBar1";
+            this.buckgroundProcessProgressBar.Size = new System.Drawing.Size(952, 50);
+            this.buckgroundProcessProgressBar.TabIndex = 7;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(970, 956);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(219, 50);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Зупинити перебір";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.stopBruteForce);
+            this.cancelBackgroundProgressButton.Location = new System.Drawing.Point(970, 956);
+            this.cancelBackgroundProgressButton.Name = "button3";
+            this.cancelBackgroundProgressButton.Size = new System.Drawing.Size(219, 50);
+            this.cancelBackgroundProgressButton.TabIndex = 8;
+            this.cancelBackgroundProgressButton.Text = "Зупинити перебір";
+            this.cancelBackgroundProgressButton.UseVisualStyleBackColor = true;
+            this.cancelBackgroundProgressButton.Click += new System.EventHandler(this.stopBruteForce);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1201, 1020);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.menuStrip2);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.cancelBackgroundProgressButton);
+            this.Controls.Add(this.buckgroundProcessProgressBar);
+            this.Controls.Add(this.topMenuStrip);
+            this.Controls.Add(this.resultTextGroupBox);
+            this.Controls.Add(this.sourceTextGroupBox);
             this.Controls.Add(this.ModeGroupBox);
             this.Controls.Add(this.KeyGroupBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Шифрування тексту";
@@ -288,10 +291,10 @@ namespace TextEncryption
             ((System.ComponentModel.ISupportInitialize)(this.KeyTextBox)).EndInit();
             this.ModeGroupBox.ResumeLayout(false);
             this.ModeGroupBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.menuStrip2.ResumeLayout(false);
-            this.menuStrip2.PerformLayout();
+            this.sourceTextGroupBox.ResumeLayout(false);
+            this.resultTextGroupBox.ResumeLayout(false);
+            this.topMenuStrip.ResumeLayout(false);
+            this.topMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,23 +305,23 @@ namespace TextEncryption
         private System.Windows.Forms.GroupBox ModeGroupBox;
         private System.Windows.Forms.RadioButton DecodeRadioButton;
         private System.Windows.Forms.RadioButton DecodeWithoutKeyRadioButton;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RichTextBox SourceTextBox;
-        private System.Windows.Forms.Button ClearTextToEncryptBoxButton_1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button SubmitButton;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button ClearTextToEncryptBoxButton_2;
-        private System.Windows.Forms.RichTextBox ResultTextBox;
+        private System.Windows.Forms.GroupBox sourceTextGroupBox;
+        private System.Windows.Forms.RichTextBox sourceTextBox;
+        private System.Windows.Forms.Button clearTextToEncryptBoxButton_1;
+        private System.Windows.Forms.Button loadFromFileButton;
+        private System.Windows.Forms.Button submitButton;
+        private System.Windows.Forms.GroupBox resultTextGroupBox;
+        private System.Windows.Forms.Button saveToFileButton;
+        private System.Windows.Forms.Button clearTextToEncryptBoxButton_2;
+        private System.Windows.Forms.RichTextBox resultTextBox;
         private System.Windows.Forms.RadioButton EncodeRadioButton;
-        private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem проПрограммуToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip topMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem aboutProgramTopMenuStripItem;
         private System.Windows.Forms.NumericUpDown KeyTextBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button selectDictionaryButton;
         private System.ComponentModel.BackgroundWorker decodingWorcker;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ProgressBar buckgroundProcessProgressBar;
+        private System.Windows.Forms.Button cancelBackgroundProgressButton;
     }
 }
 

@@ -13,12 +13,12 @@ namespace TextEncryption
 {
     public partial class MainForm : Form
     {
-        int workMode = 0; // 0 - encrypt, 1 - decrypt, 2 - decrypt without key
         private readonly CezarCipher cipher = new CezarCipher();
-        string[] dictionary;
         private readonly string ENCODE_BUTTON_TEXT = "Кодувати",
-               DECODE_BUTTON_TEXT = "Декодувати";
-
+                                DECODE_BUTTON_TEXT = "Декодувати";
+        int workMode = 0;
+        string[] dictionary;
+       
         public MainForm()
         {
             InitializeComponent();
@@ -28,6 +28,7 @@ namespace TextEncryption
         private void InitializeBackgroundWorker()
         {
             KeyTextBox.Value = CezarCipher.DEFAULT_KEY;
+
             decodingWorcker.WorkerReportsProgress = true;
             decodingWorcker.WorkerSupportsCancellation = true;
             decodingWorcker.DoWork += new DoWorkEventHandler(DecodingWorker_DoWork);

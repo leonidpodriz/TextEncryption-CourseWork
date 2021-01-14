@@ -154,7 +154,7 @@ namespace TextEncryption
             CezarCipherBruteForce brutForcer = (CezarCipherBruteForce)e.Argument;
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            brutForcer.SetWorcker(worker);
+            brutForcer.SetWorker(worker);
             brutForcer.SetDoWorkEventArgs(e);
             e.Result = brutForcer.GetResult();
         }

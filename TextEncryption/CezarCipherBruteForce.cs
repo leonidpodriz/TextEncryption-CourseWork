@@ -22,12 +22,12 @@ namespace TextEncryption
             this.text = text;
         }
 
-        public void SetWorcker(BackgroundWorker worker)
+        public void SetWorker(BackgroundWorker worker)
         {
             this.worker = worker;
         }
 
-        public void UpdateProgressIfWorcker(int percentComplete)
+        public void UpdateProgressIfWorker(int percentComplete)
         {
             if (worker != null)
             {
@@ -51,29 +51,42 @@ namespace TextEncryption
             return false;
         }
 
+        private string GetDecodedTextByKey(int key)
+        {
+            return cipher.Codeс(text, key);
+        }
+
+        private string[] GetDecodedWordsByKey(int key)
+        {
+            return GetDecodedTextByKey(key).Split(' ', '\n');
+        }
+
+        private void ShowSuccessMessageBox(int key, string word)
+        {
+            MessageBox.Show($"Ключ: {-key}\nЗбіг по слову: {word}", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private bool IsWordsSame(string firstWord, string secondWord)
+        {
+            return firstWord.ToLower() == secondWord.ToLower();
+        }
+
         public string GetResult()
         {
-            for (int i = -1; i >= -32; i--)
+            for (int key = -1; key >= -32; key--)
             {
-                string decodedText = cipher.Codeс(text, i);
-                string[] decodedWords = decodedText.Split(' ', '\n');
+                string[] decodedWords = GetDecodedWordsByKey(key);
+                UpdateProgressIfWorker(Convert.ToInt32((-key * 100 / 32)));
 
-                int propgressInPercent = Convert.ToInt32((-i * 100 / 32));
-                worker.ReportProgress(propgressInPercent);
-
-                for (int di = 0; di < decodedWords.Length; di++)
+                foreach (string decodedWord in decodedWords)
                 {
-                    for (int li = 0; li < dictionary.Length; li++)
+                    foreach (string dictionaryWord in dictionary)
                     {
-                        string s = decodedWords[di].ToLower();
-                        string t = dictionary[li].ToLower();
-
-
-                        if (s == t & s != "")
+                        if (IsWordsSame(decodedWord, dictionaryWord) & decodedWord != "")
                         {
-                            UpdateProgressIfWorcker(100);
-                            MessageBox.Show($"Ключ: {-i}\nЗбіг по слову: {s}", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return decodedText;
+                            UpdateProgressIfWorker(100);
+                            ShowSuccessMessageBox(key, decodedWord);
+                            return GetDecodedTextByKey(key);
                         }
 
                         if (IsCanceled())

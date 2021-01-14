@@ -80,7 +80,7 @@ namespace TextEncryption
             0,
             0,
             0});
-            this.KeyTextBox.ValueChanged += new System.EventHandler(this.updateKey);
+            this.KeyTextBox.ValueChanged += new System.EventHandler(this.UpdateKey);
             // 
             // ModeGroupBox
             // 
@@ -105,7 +105,7 @@ namespace TextEncryption
             this.EncodeRadioButton.TabStop = true;
             this.EncodeRadioButton.Text = "Шифрувати";
             this.EncodeRadioButton.UseVisualStyleBackColor = true;
-            this.EncodeRadioButton.CheckedChanged += new System.EventHandler(this.setEncodeMode);
+            this.EncodeRadioButton.CheckedChanged += new System.EventHandler(this.SetEncodeMode);
             // 
             // DecodeWithoutKeyRadioButton
             // 
@@ -117,7 +117,7 @@ namespace TextEncryption
             this.DecodeWithoutKeyRadioButton.TabStop = true;
             this.DecodeWithoutKeyRadioButton.Text = "Розшифрувати без ключа";
             this.DecodeWithoutKeyRadioButton.UseVisualStyleBackColor = true;
-            this.DecodeWithoutKeyRadioButton.CheckedChanged += new System.EventHandler(this.setDecodeWithoutKeyMode);
+            this.DecodeWithoutKeyRadioButton.CheckedChanged += new System.EventHandler(this.SetDecodeWithoutKeyMode);
             // 
             // DecodeRadioButton
             // 
@@ -129,7 +129,7 @@ namespace TextEncryption
             this.DecodeRadioButton.TabStop = true;
             this.DecodeRadioButton.Text = "Розшифрувати";
             this.DecodeRadioButton.UseVisualStyleBackColor = true;
-            this.DecodeRadioButton.CheckedChanged += new System.EventHandler(this.setDecodeMode);
+            this.DecodeRadioButton.CheckedChanged += new System.EventHandler(this.SetDecodeMode);
             // 
             // sourceTextGroupBox
             // 
@@ -164,7 +164,7 @@ namespace TextEncryption
             this.submitButton.TabIndex = 3;
             this.submitButton.Text = "Кодувати";
             this.submitButton.UseVisualStyleBackColor = true;
-            this.submitButton.Click += new System.EventHandler(this.processText);
+            this.submitButton.Click += new System.EventHandler(this.ProcessText);
             // 
             // button2
             // 
@@ -184,7 +184,7 @@ namespace TextEncryption
             this.clearTextToEncryptBoxButton_1.TabIndex = 1;
             this.clearTextToEncryptBoxButton_1.Text = "X";
             this.clearTextToEncryptBoxButton_1.UseVisualStyleBackColor = true;
-            this.clearTextToEncryptBoxButton_1.Click += new System.EventHandler(this.clearTextBoxes);
+            this.clearTextToEncryptBoxButton_1.Click += new System.EventHandler(this.ClearTextBoxes);
             // 
             // sourceTextBox
             // 
@@ -214,7 +214,7 @@ namespace TextEncryption
             this.saveToFileButton.TabIndex = 2;
             this.saveToFileButton.Text = "Зберегти до файлу";
             this.saveToFileButton.UseVisualStyleBackColor = true;
-            this.saveToFileButton.Click += new System.EventHandler(this.saveResult);
+            this.saveToFileButton.Click += new System.EventHandler(this.SaveResult);
             // 
             // ClearTextToEncryptBoxButton_2
             // 
@@ -224,7 +224,7 @@ namespace TextEncryption
             this.clearTextToEncryptBoxButton_2.TabIndex = 1;
             this.clearTextToEncryptBoxButton_2.Text = "X";
             this.clearTextToEncryptBoxButton_2.UseVisualStyleBackColor = true;
-            this.clearTextToEncryptBoxButton_2.Click += new System.EventHandler(this.clearTextBoxes);
+            this.clearTextToEncryptBoxButton_2.Click += new System.EventHandler(this.ClearTextBoxes);
             // 
             // ResultTextBox
             // 
@@ -269,7 +269,7 @@ namespace TextEncryption
             this.cancelBackgroundProgressButton.TabIndex = 8;
             this.cancelBackgroundProgressButton.Text = "Зупинити перебір";
             this.cancelBackgroundProgressButton.UseVisualStyleBackColor = true;
-            this.cancelBackgroundProgressButton.Click += new System.EventHandler(this.stopBruteForce);
+            this.cancelBackgroundProgressButton.Click += new System.EventHandler(this.StopBruteForce);
             // 
             // MainForm
             // 

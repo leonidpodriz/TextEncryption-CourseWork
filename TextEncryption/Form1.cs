@@ -30,55 +30,55 @@ namespace TextEncryption
             KeyTextBox.Value = CezarCipher.DEFAULT_KEY;
             decodingWorcker.WorkerReportsProgress = true;
             decodingWorcker.WorkerSupportsCancellation = true;
-            decodingWorcker.DoWork += new DoWorkEventHandler(decodingWorker_DoWork);
-            decodingWorcker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(decodingWorcker_RunWorkerCompleted);
-            decodingWorcker.ProgressChanged += new ProgressChangedEventHandler(decodingWorker_ProgressChanged);
+            decodingWorcker.DoWork += new DoWorkEventHandler(DecodingWorker_DoWork);
+            decodingWorcker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(DecodingWorcker_RunWorkerCompleted);
+            decodingWorcker.ProgressChanged += new ProgressChangedEventHandler(DecodingWorker_ProgressChanged);
         }
 
-        private void updateKey(object sender, EventArgs e)
+        private void UpdateKey(object sender, EventArgs e)
         {
             this.cipher.SetKey(Decimal.ToInt16(this.KeyTextBox.Value));
         }
 
-        private void setMode(int modeNumber, string buttonText)
+        private void SetMode(int modeNumber, string buttonText)
         {
             this.workMode = modeNumber;
             this.submitButton.Text = buttonText;
             this.resultTextBox.Text = "";
         }
 
-        private void setEncodeMode(object sender, EventArgs e)
+        private void SetEncodeMode(object sender, EventArgs e)
         {
-            setMode(0, ENCODE_BUTTON_TEXT);
+            SetMode(0, ENCODE_BUTTON_TEXT);
         }
 
-        private void setDecodeMode(object sender, EventArgs e)
+        private void SetDecodeMode(object sender, EventArgs e)
         {
-            setMode(1, DECODE_BUTTON_TEXT);
+            SetMode(1, DECODE_BUTTON_TEXT);
         }
 
-        private void setDecodeWithoutKeyMode(object sender, EventArgs e)
+        private void SetDecodeWithoutKeyMode(object sender, EventArgs e)
         {
-            setMode(2, DECODE_BUTTON_TEXT);
+            SetMode(2, DECODE_BUTTON_TEXT);
         }
 
-        private void clearSourceTextBox()
+        private void ClearSourceTextBox()
         {
             this.sourceTextBox.Text = "";
         }
 
-        private void clearResultTextBox()
+        private void ClearResultTextBox()
         {
             this.resultTextBox.Text = "";
         }
 
-        private void clearTextBoxes(object sender, EventArgs e)
+        private void ClearTextBoxes(object sender, EventArgs e)
         {
-            clearSourceTextBox();
-            clearResultTextBox();
+            ClearSourceTextBox();
+            ClearResultTextBox();
         }
 
-        private void processText(object sender, EventArgs e)
+        private void ProcessText(object sender, EventArgs e)
         {
             switch (workMode)
             {
@@ -91,7 +91,7 @@ namespace TextEncryption
                 case 2:
                     if (dictionary != null)
                     {
-                        startBruteForce();
+                        StartBruteForce();
                         break;
                     }
 
@@ -100,7 +100,7 @@ namespace TextEncryption
             }
         }
 
-        private void startBruteForce()
+        private void StartBruteForce()
         {
             DecodeRadioButton.Enabled = false;
             EncodeRadioButton.Enabled = false;
@@ -110,7 +110,7 @@ namespace TextEncryption
             decodingWorcker.RunWorkerAsync(brutForcer);
         }
 
-        private void stopBruteForce(object sender, EventArgs e)
+        private void StopBruteForce(object sender, EventArgs e)
         {
             if (decodingWorcker.IsBusy)
             {
@@ -118,7 +118,7 @@ namespace TextEncryption
             }
         }
 
-        private string getFileNameWithDialog()
+        private string GetFileNameWithDialog()
         {
             string fileText = "";
             MessageBoxButtons buttons = MessageBoxButtons.OK;
@@ -148,17 +148,17 @@ namespace TextEncryption
             return fileText;
         }
 
-        private void decodingWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void DecodingWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             CezarCipherBruteForce brutForcer = (CezarCipherBruteForce)e.Argument;
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            brutForcer.setWorcker(worker);
-            brutForcer.setDoWorkEventArgs(e);
-            e.Result = brutForcer.getResult();
+            brutForcer.SetWorcker(worker);
+            brutForcer.SetDoWorkEventArgs(e);
+            e.Result = brutForcer.GetResult();
         }
 
-        private void decodingWorcker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void DecodingWorcker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
@@ -172,17 +172,17 @@ namespace TextEncryption
             DecodeWithoutKeyRadioButton.Enabled = true;
         }
 
-        private void decodingWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void DecodingWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             buckgroundProcessProgressBar.Value = e.ProgressPercentage;
         }
 
         private void LoadTextForTextToProcessBox(object sender, EventArgs e)
         {
-            this.sourceTextBox.Text = this.getFileNameWithDialog();
+            this.sourceTextBox.Text = this.GetFileNameWithDialog();
         }
 
-        private void saveResult(object sender, System.EventArgs e)
+        private void SaveResult(object sender, System.EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog
             {
@@ -208,7 +208,7 @@ namespace TextEncryption
 
         private void LoadDictionary(object sender, EventArgs e)
         {
-            string dictionaryText = getFileNameWithDialog();
+            string dictionaryText = GetFileNameWithDialog();
             dictionary = dictionaryText.Split('\n', ' ');
         }
 

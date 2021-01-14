@@ -10,11 +10,11 @@ namespace TextEncryption
 {
     class CezarCipherBruteForce
     {
-        string[] dictionary;
-        string text;
+        readonly string[] dictionary;
+        readonly string text;
+        readonly CezarCipher cipher = new CezarCipher();
         BackgroundWorker worker;
         DoWorkEventArgs arguments;
-        CezarCipher cipher = new CezarCipher();
 
         public CezarCipherBruteForce(string[] dictionary, string text)
         {
@@ -22,12 +22,12 @@ namespace TextEncryption
             this.text = text;
         }
 
-        public void setWorcker(BackgroundWorker worker)
+        public void SetWorcker(BackgroundWorker worker)
         {
             this.worker = worker;
         }
 
-        public void updateProgressIfWorcker(int percentComplete)
+        public void UpdateProgressIfWorcker(int percentComplete)
         {
             if (worker != null)
             {
@@ -35,12 +35,12 @@ namespace TextEncryption
             }
         }
 
-        public void setDoWorkEventArgs(DoWorkEventArgs arguments)
+        public void SetDoWorkEventArgs(DoWorkEventArgs arguments)
         {
             this.arguments = arguments;
         }
 
-        public bool isCanceled()
+        public bool IsCanceled()
         {
             if (arguments != null && worker.CancellationPending)
             {
@@ -51,7 +51,7 @@ namespace TextEncryption
             return false;
         }
 
-        public string getResult()
+        public string GetResult()
         {
             for (int i = -1; i >= -32; i--)
             {
@@ -71,12 +71,12 @@ namespace TextEncryption
 
                         if (s == t & s != "")
                         {
-                            updateProgressIfWorcker(100);
+                            UpdateProgressIfWorcker(100);
                             MessageBox.Show($"Ключ: {-i}\nЗбіг по слову: {s}", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return decodedText;
                         }
 
-                        if (isCanceled())
+                        if (IsCanceled())
                         {
                             return "";
                         }
